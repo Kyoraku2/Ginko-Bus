@@ -27,13 +27,13 @@ document.addEventListener("DOMContentLoaded", function (_e) {
             if(btnGeoloc.classList.contains('active')){
                 navigator.geolocation.getCurrentPosition(function(pos){
                     fSort = function(position, id1, id2){
-                        var d1 = distance(stations[id1].lat, stations[id1].long, position.coords.latitude, position.coords.longitude);
-                        var d2 = distance(stations[id2].lat, stations[id2].long, position.coords.latitude, position.coords.longitude);
+                        var d1 = distance(stations[id1].lat, stations[id1].lon, position.coords.latitude, position.coords.longitude);
+                        var d2 = distance(stations[id2].lat, stations[id2].lon, position.coords.latitude, position.coords.longitude);
                         return d1 - d2;
                     }.bind(null, pos);
 
                     for(var name in stations){
-                        stations[name].distance = distance(stations[name].lat, stations[name].long, pos.coords.latitude, pos.coords.longitude)
+                        stations[name].distance = distance(stations[name].lat, stations[name].lon, pos.coords.latitude, pos.coords.longitude)
                     }
                     remplirStations();
                 });
@@ -356,6 +356,7 @@ document.addEventListener("DOMContentLoaded", function (_e) {
         // lecture du JSON et affichage 
         stations = await response.json();
         afficherStations();
+        afficherCarte();
                         
         // fin du chargement
         document.querySelector("#bcStart h2").style.display = "block";
@@ -398,6 +399,26 @@ document.addEventListener("DOMContentLoaded", function (_e) {
         document.getElementById("bcLignes").innerHTML = r;
     }
 
+
+    function afficherCarte(){
+        document.getElementById('bcMap').innerHTML = '<div id="mapid" style="width: 100vw; height: 100vh; padding: 0; margin: 0;"></div>';
+    
+        let mymap = L.map('mapid', { 
+            center: [47.22969, 6.03442], 
+            zoom: 15 
+        });
+    
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { 
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+        }).addTo(mymap);
+        
+        for(var name in stations){
+            L.marker([stations[name].lat, stations[name].lon], {}).addTo(mymap)
+            .bindPopup(name);
+        }
+    
+    }
 
 
     /**
