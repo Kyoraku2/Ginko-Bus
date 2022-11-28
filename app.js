@@ -3,6 +3,9 @@
 // URL où aller chercher les infos
 let URL = "https://ginkobus-server.onrender.com"; 
 
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+}
 
 /************************************************************************
  *                                                                      *
