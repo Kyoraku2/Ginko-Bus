@@ -1,7 +1,7 @@
 "use strict";
 
 // URL où aller chercher les infos
-let URL = "https://https://ginkobus-server.onrender.com"; 
+let URL = "https://ginkobus-server.onrender.com"; 
 
 
 /************************************************************************
