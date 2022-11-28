@@ -48,10 +48,16 @@
     </div>
     <!-- Main frame -->
     <main>
+        <input type="radio" name="frame" id="radMap">
         <input type="radio" name="frame" id="radHome" checked>
         <input type="radio" name="frame" id="radStations">
         <input type="radio" name="frame" id="radLignes">
         
+        <!-- Home - favorites --> 
+        <div id="bcMap">
+            <div class="map" style="width: 100vw; height: 100vh; padding: 0; margin: 0;"></div>
+        </div>
+
         <!-- Home - favorites --> 
         <div id="bcHome">
         </div>
@@ -62,6 +68,7 @@
         <div id="bcLignes">
         </div>
         <nav>
+            <label for="radMap">Carte</label>
             <label for="radHome">Favoris</label>
             <label for="radStations">Stations</label>
             <label for="radLignes">Lignes</label>

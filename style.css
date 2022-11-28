@@ -234,6 +234,18 @@ main input[type=radio] {
 }
 
 /** bouton radio "home" **/
+#radMap:checked ~ #bcMap {
+    display: block;   
+}
+#radMap:checked ~ nav > label[for="radMap"] {
+    background-color: #FF9900;
+    color: black;
+}
+#radMap:checked ~ nav > label[for="radMap"]:before {
+    content: '\2630 ';
+}
+
+/** bouton radio "home" **/
 #radHome:checked ~ #bcHome {
     display: block;   
 }
